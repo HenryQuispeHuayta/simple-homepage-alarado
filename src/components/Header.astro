@@ -1,0 +1,48 @@
+---
+import type navType from "../types";
+import ThemeButton from "./ThemeButton.astro";
+
+interface Props {
+  navItems: navType[];
+}
+
+const { navItems } = Astro.props;
+---
+
+<header>
+  <a href="/">
+    <img src="/logo.svg" alt="logo" />
+  </a>
+  <nav>
+    {navItems.map(({ name, href }) => <a href={href}>{name}</a>)}
+  </nav>
+  <ThemeButton />
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  img {
+    width: 50px;
+  }
+
+  ul {
+    display: flex;
+    gap: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  nav {
+    display: flex;
+    gap: 3rem;
+  }
+</style>
