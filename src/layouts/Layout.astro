@@ -1,4 +1,7 @@
 ---
+import Header from "../components/Header.astro";
+import { NavLinks } from "../consts";
+
 interface Props {
   title: string;
 }
@@ -14,27 +17,52 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
   <body>
+    <Header navItems={NavLinks} />
     <slot />
+    <footer></footer>
   </body>
 </html>
 <style is:global>
   :root {
-    --background-color: #ffffff;
-    --text-color: #000000;
+    --background-color: #f2f9fe;
+    --text-color: #223344;
+    --btn-bg-main: #f2f9fe;
+    --btn-bg-secondary: transparent;
+    --btn-color: #2a4dd0;
   }
 
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     :root {
-      --background-color: #000000;
+      --background-color: #111729;
       --text-color: #ffffff;
     }
+  } */
+  html.dark {
+    --background-color: #111729;
+    --text-color: white;
+    --btn-bg-main: transparent;
+    --btn-bg-secondary: #f2f9fe;
+    --btn-color: white;
   }
 
   body {
     background-color: var(--background-color);
     color: var(--text-color);
+    font-family: "Poppins", sans-serif;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 90%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
   }
 </style>
